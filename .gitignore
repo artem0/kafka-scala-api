@@ -4,3 +4,6 @@
 /target/
 */target/
 /checkpoint*/
+*.cache
+/project/project/target/
+!/project/project/target/config-classes/

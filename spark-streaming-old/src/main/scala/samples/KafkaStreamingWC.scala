@@ -4,16 +4,12 @@ import kafka.serializer.StringDecoder
 import org.apache.spark.streaming.kafka.KafkaUtils
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
-object KafkaStreamingOldstyle {
-
-  def main(args: Array[String]): Unit = {
-    kafkaWordCount()
-  }
+object KafkaStreamingWC {
 
   /**
     * Kafka 0.8 API
     */
-  def kafkaWordCount() = {
+  def kafkaStreamingWC() = {
     val ssc = new StreamingContext("local[*]", "DirectKafkaStream", Seconds(2))
     setupLogging()
     val brokers = "127.0.0.1:9092"

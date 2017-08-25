@@ -3,9 +3,9 @@ package samples
 import org.apache.spark.streaming._
 import org.apache.spark.streaming.kafka._
 
-object KafkaStreamingGroupsOldstyle {
+object KafkaStreamingGroups {
 
-  def main(args: Array[String]) {
+  private def kafkaStreamingGroup = {
     val zkQuorum = "127.0.0.1:2181"
     val group = "mygroup1"
     val topics = "sample_topic"
