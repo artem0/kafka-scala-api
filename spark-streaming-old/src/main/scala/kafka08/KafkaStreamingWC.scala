@@ -1,4 +1,4 @@
-package samples
+package kafka08
 
 import kafka.serializer.StringDecoder
 import org.apache.spark.streaming.kafka.KafkaUtils
@@ -6,12 +6,17 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 object KafkaStreamingWC {
 
+  def main(args: Array[String]): Unit = {
+    kafkaStreamingWC
+  }
+
+  def kafkaStreamingWC = launch(kafka08StreamingWC, "Kafka08Streaming", "checkpointing")
+
   /**
-    * Kafka 0.8 API
+    * kafka08Streaming with createDirectStream
+    * @param ssc StreamingContext
     */
-  def kafkaStreamingWC() = {
-    val ssc = new StreamingContext("local[*]", "DirectKafkaStream", Seconds(2))
-    setupLogging()
+  def kafka08StreamingWC(ssc: StreamingContext) = {
     val brokers = "127.0.0.1:9092"
     val topics = "sample_topic"
     val topicsSet = topics.split(",").toSet
@@ -24,10 +29,5 @@ object KafkaStreamingWC {
     val words = lines.flatMap(_.split(" "))
     val wordCounts = words.map(x => (x, 1L)).reduceByKey(_ + _)
     wordCounts.print()
-
-    // Start the computation
-    ssc.checkpoint("checkpointing")
-    ssc.start()
-    ssc.awaitTermination()
   }
 }
