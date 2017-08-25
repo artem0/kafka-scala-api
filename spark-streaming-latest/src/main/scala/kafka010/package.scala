@@ -15,15 +15,24 @@ package object kafka010 {
     "value.deserializer" -> classOf[StringDeserializer],
     "group.id" -> "mygroup1",
     "auto.offset.reset" -> "latest",
-    "enable.auto.commit" -> (true: java.lang.Boolean)
+    "enable.auto.commit" -> (false: java.lang.Boolean)
   )
 
-  def launch(logic: StreamingContext => Unit, appName:String, checkpointPath:String): Unit = {
+  def launchWithCheckpointing(logic: StreamingContext => Unit, appName:String, checkpointPath:String): Unit = {
     val streamingContext = new StreamingContext("local[*]", appName, Seconds(2))
     setupLogging()
     logic.apply(streamingContext)
 
     streamingContext.checkpoint(checkpointPath)
+    streamingContext.start()
+    streamingContext.awaitTermination()
+  }
+
+  def launchWithItself(logic: StreamingContext => Unit, appName:String): Unit = {
+    val streamingContext = new StreamingContext("local[*]", appName, Seconds(2))
+    setupLogging()
+    logic.apply(streamingContext)
+
     streamingContext.start()
     streamingContext.awaitTermination()
   }
