@@ -9,13 +9,13 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
 object KafkaStreamingLatestExample {
 
   def main(args: Array[String]): Unit = {
-    kafkaStream10()
+    kafkaStream010()
   }
 
   /**
-    * Kafka 1.0 API
+    * Kafka 0.10.0 API
     */
-  def kafkaStream10() = {
+  def kafkaStream010() = {
     val streamingContext = new StreamingContext("local[*]", "DirectKafkaStream", Seconds(2))
 
     val kafkaParams = Map[String, Object](
@@ -27,14 +27,14 @@ object KafkaStreamingLatestExample {
       "enable.auto.commit" -> (true: java.lang.Boolean)
     )
 
-    val topics = Array("first_topic")
+    val topics = Array("sample_topic")
     val stream = KafkaUtils.createDirectStream[String, String](
       streamingContext,
       PreferConsistent,
       Subscribe[String, String](topics, kafkaParams)
     )
 
-    stream.map(record => (record.key, record.value))
+    stream.map(record => (record.key, record.value)).print()
 
     streamingContext.start()
     streamingContext.awaitTermination()
