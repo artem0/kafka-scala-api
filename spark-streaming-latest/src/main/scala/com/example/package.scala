@@ -1,7 +1,9 @@
+package com
+
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
-package object kafka010 {
+package object example {
 
   def setupLogging(): Unit = {
     import org.apache.log4j.{Level, Logger}

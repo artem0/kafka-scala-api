@@ -1,7 +1,9 @@
-package kafka08
+package com.example.kafka08
 
 import org.apache.spark.streaming._
 import org.apache.spark.streaming.kafka._
+
+import com.example._
 
 object KafkaStreamingGroups {
 

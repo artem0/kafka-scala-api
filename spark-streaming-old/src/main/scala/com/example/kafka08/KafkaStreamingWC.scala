@@ -1,8 +1,10 @@
-package kafka08
+package com.example.kafka08
 
 import kafka.serializer.StringDecoder
 import org.apache.spark.streaming.kafka.KafkaUtils
 import org.apache.spark.streaming.{Seconds, StreamingContext}
+
+import com.example._
 
 object KafkaStreamingWC {
 

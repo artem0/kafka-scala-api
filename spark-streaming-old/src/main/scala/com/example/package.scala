@@ -1,6 +1,8 @@
+package com
+
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
-package object kafka08 {
+package object example {
 
     def setupLogging(): Unit = {
       import org.apache.log4j.{Level, Logger}

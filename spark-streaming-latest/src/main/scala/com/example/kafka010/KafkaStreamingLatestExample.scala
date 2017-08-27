@@ -1,4 +1,4 @@
-package kafka010
+package com.example.kafka010
 
 import java.{util => ju}
 
@@ -11,6 +11,7 @@ import org.apache.spark.streaming.kafka010._
 import org.apache.spark.{SparkContext, TaskContext}
 
 import scala.collection.JavaConversions._
+import com.example._
 
 object KafkaStreamingLatestExample {
 

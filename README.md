@@ -13,7 +13,7 @@ Install Kafka in docker
 
 Management of Kafka is available on <http://localhost:3030>
 
-#Access to cli in container
+# Access to cli in container
     
     docker run --rm -it --net=host landoop/fast-data-dev bash
     
@@ -23,7 +23,7 @@ Management of Kafka is available on <http://localhost:3030>
     
     kafka-topics --zookeeper 127.0.0.1:2181 --describe topic sample_topic
 
-#Rest proxy
+# Rest proxy
 
 Rest proxy is available on <http://localhost:7082/topics/sample_topic> via curl e.g.:
 
@@ -36,7 +36,7 @@ Rest proxy is available on <http://localhost:7082/topics/sample_topic> via curl 
     }' \
     http://localhost:7082/topics/sample_topic
 
-#Launching 
+# Launching 
 
     sbt project ...
     sbt runMain ...
