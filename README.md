@@ -14,7 +14,8 @@ Install Kafka in docker
 Management of Kafka is available on <http://localhost:3030>
 
 #Access to cli in container
-    sudo docker run --rm -it --net=host landoop/fast-data-dev bash
+    
+    docker run --rm -it --net=host landoop/fast-data-dev bash
     
     kafka-topics --zookeeper 127.0.0.1:2181 --create --topic sample_topic --partitions 3 --replication-factor 1
     

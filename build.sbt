@@ -1,22 +1,32 @@
 val sparkStreamingOld = "spark-streaming-old"
 val sparkStreamingLatest = "spark-streaming-latest"
+val akkaStreamsKafka = "akka-streams-kafka"
 
-val sparkCommon = Seq("org.apache.spark" %% "spark-core" % "2.1.0",
-                      "org.apache.spark" %% "spark-streaming" % "2.1.0")
+val sparkVersion = "2.1.0"
+val sparkCommon = Seq("org.apache.spark" %% "spark-core" % sparkVersion,
+                      "org.apache.spark" %% "spark-streaming" % sparkVersion)
 
-lazy val spark_streaming_old = (project in file(sparkStreamingOld))
+lazy val sparkKafka08 = (project in file(sparkStreamingOld))
   .settings(commonSettings(sparkStreamingOld): _*)
   .settings(
     libraryDependencies ++= sparkCommon ++ Seq(
-            "org.apache.spark" % "spark-streaming-kafka-0-8_2.11" % "2.1.0"
+      "org.apache.spark" % "spark-streaming-kafka-0-8_2.11" % sparkVersion
     )
   )
 
-lazy val spark_streaming_latest = (project in file(sparkStreamingLatest))
+lazy val sparkKafka010 = (project in file(sparkStreamingLatest))
   .settings(commonSettings(sparkStreamingLatest): _*)
   .settings(
-    libraryDependencies ++=  sparkCommon ++ Seq(
-      "org.apache.spark" % "spark-streaming-kafka-0-10_2.11" % "2.1.0"
+    libraryDependencies ++= sparkCommon ++ Seq(
+      "org.apache.spark" % "spark-streaming-kafka-0-10_2.11" % sparkVersion
+    )
+  )
+
+lazy val akkaKafkaModule = (project in file(akkaStreamsKafka))
+  .settings(commonSettings(sparkStreamingLatest): _*)
+  .settings(
+    libraryDependencies ++= sparkCommon ++ Seq(
+      "com.typesafe.akka" %% "akka-stream-kafka" % "0.17"
     )
   )
 

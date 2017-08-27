@@ -3,7 +3,7 @@
 /.idea/
 /target/
 */target/
-/checkpoint*/
+*checkpoint*/
 *.cache
 /project/project/target/
 !/project/project/target/config-classes/
