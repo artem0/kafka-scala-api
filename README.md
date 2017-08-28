@@ -1,6 +1,7 @@
 # Kafka sample
 1. Spark streaming and Kafka sample
 2. Akka streams and Kafka sample 
+3. Akka actors and Kafka sample
 
 ## Installation
 Install Kafka in docker
