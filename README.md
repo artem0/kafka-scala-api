@@ -2,6 +2,7 @@
 1. Spark streaming and Kafka sample
 2. Akka streams and Kafka sample 
 3. Akka actors and Kafka sample
+4. Kafka SSL configuration sample for brokers/clients/zookeeper and script for generating signed certificates
 
 ## Installation
 Install Kafka in docker
