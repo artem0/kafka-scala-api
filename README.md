@@ -1,9 +1,11 @@
-# Kafka sample
+# Kafka samples
 1. Spark streaming and Kafka sample
 2. Akka streams and Kafka sample 
 3. Akka actors and Kafka sample
 4. Kafka SSL configuration sample for brokers/clients/zookeeper and script for generating signed certificates
 5. Spark structured streaming and Kafka integration
+6. Spark writer to Kafka from Dstream, RDD and DataFrame via <https://github.com/BenFradet/spark-kafka-writer>
+read data from socket - `nc -lk 9087` transform and write to Kafka
 
 ## Installation
 Install Kafka in docker
@@ -23,6 +25,9 @@ Management of Kafka is available on <http://localhost:3030>
     kafka-topics --zookeeper 127.0.0.1:2181 --create --topic sample_topic --partitions 3 --replication-factor 1
     
     kafka-console-producer --broker-list 127.0.0.1:9092 --topic sample_topic
+    
+    kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic //--from-beginning --partition 0
+    --consumer-property group.id=mygroup1 //will force to write offset
     
     kafka-topics --zookeeper 127.0.0.1:2181 --describe topic sample_topic
 

@@ -4,6 +4,8 @@ val sparkStreamingOld = "spark-streaming-old"
 val sparkStreamingLatest = "spark-streaming-latest"
 val akkaStreamsKafka = "akka-streams-kafka"
 val akkaActorsKafka = "akka-actors-kafka"
+val structuredStreamingModule = "structured-streaming"
+val streamingWriter = "spark-streaming-writer"
 
 val sparkCommon = Seq("org.apache.spark" %% "spark-core" % sparkVersion,
                       "org.apache.spark" %% "spark-streaming" % sparkVersion)
@@ -25,11 +27,24 @@ lazy val sparkKafka010 = (project in file(sparkStreamingLatest))
     )
   )
 
-lazy val structuredStreaming = (project in file("structured-streaming"))
+lazy val structuredStreaming = (project in file(structuredStreamingModule))
   .settings(commonSettings(sparkStreamingLatest): _*)
   .settings(
     libraryDependencies ++= Seq(
       "org.apache.spark" % "spark-sql-kafka-0-10_2.11" % sparkVersion,
+      "org.apache.spark" %% "spark-core" % sparkVersion,
+      "org.apache.spark" %% "spark-sql" % sparkVersion
+    )
+  )
+
+lazy val sparkStreamingWriter = (project in file(streamingWriter))
+  .settings(commonSettings(sparkStreamingLatest): _*)
+  .settings(
+    libraryDependencies ++= Seq(
+      "org.apache.kafka" % "kafka_2.11" % "0.10.2.1",
+      "org.apache.spark" %% "spark-streaming-kafka-0-10" % sparkVersion,
+      "org.apache.spark" %% "spark-streaming" % sparkVersion,
+      "com.github.benfradet" %% "spark-kafka-0-10-writer" % "0.3.0",
       "org.apache.spark" %% "spark-core" % sparkVersion,
       "org.apache.spark" %% "spark-sql" % sparkVersion
     )
