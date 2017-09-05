@@ -25,11 +25,21 @@ lazy val sparkKafka010 = (project in file(sparkStreamingLatest))
     )
   )
 
+lazy val structuredStreaming = (project in file("structured-streaming"))
+  .settings(commonSettings(sparkStreamingLatest): _*)
+  .settings(
+    libraryDependencies ++= Seq(
+      "org.apache.spark" % "spark-sql-kafka-0-10_2.11" % sparkVersion,
+      "org.apache.spark" %% "spark-core" % sparkVersion,
+      "org.apache.spark" %% "spark-sql" % sparkVersion
+    )
+  )
+
 lazy val akkaKafkaModule = (project in file(akkaStreamsKafka))
   .settings(commonSettings(akkaStreamsKafka): _*)
   .settings(
     libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-stream-kafka" % akkaStreamsKafka
+      "com.typesafe.akka" %% "akka-stream-kafka" % akkaStreamsKafkaVersion
     )
   )
 
@@ -50,7 +60,8 @@ def commonSettings(_name: String) = Seq(
   cancelable in Global := true,
   resolvers ++= List(
     Resolver.jcenterRepo,
-    Resolver.sonatypeRepo("releases"), Resolver.bintrayRepo("cakesolutions", "maven")
+    Resolver.sonatypeRepo("releases"), Resolver.bintrayRepo("cakesolutions", "maven"),
+    "apache-snapshots" at "http://repository.apache.org/snapshots/"
   )
 )
 
