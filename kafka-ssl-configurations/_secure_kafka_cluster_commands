@@ -1,0 +1,18 @@
+# env
+export KAFKA_HOST="my.kafka.hostname"
+export KAFKA_OPTS="-Djava.security.auth.login.config=/etc/kafka/kafka_server_jaas.conf"
+
+# create topics
+kafka-topics --create --topic securing-kafka --replication-factor 1 --partitions 3 --zookeeper $KAFKA_HOST:2181
+
+# producer acl
+kafka-acls --authorizer-properties zookeeper.connect=$KAFKA_HOST:2181 --add --allow-principal User:kafkaclient --producer --topic securing-kafka
+
+# consumer acl
+kafka-acls --authorizer-properties zookeeper.connect=$KAFKA_HOST:2181 --add --allow-principal User:kafkaclient --consumer --topic securing-kafka --group securing-kafka-group
+
+# start the producer
+kafka-console-producer --broker-list $KAFKA_HOST:9093 --topic securing-kafka --producer.config /etc/kafka/producer_ssl.properties
+
+# start the consumer
+kafka-console-consumer --bootstrap-server $KAFKA_HOST:9093 --topic securing-kafka --new-consumer --from-beginning --consumer.config /etc/kafka/consumer_ssl.properties
