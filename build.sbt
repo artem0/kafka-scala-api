@@ -23,7 +23,10 @@ lazy val sparkKafka010 = (project in file(sparkStreamingLatest))
   .settings(commonSettings(sparkStreamingLatest): _*)
   .settings(
     libraryDependencies ++= sparkCommon ++ Seq(
-      "org.apache.spark" % "spark-streaming-kafka-0-10_2.11" % sparkVersion
+      "org.apache.spark" % "spark-streaming-kafka-0-10_2.11" % sparkVersion,
+      "joda-time" % "joda-time" % "2.8.1",
+      "org.specs2" % "specs2-core_2.11" % "3.9.5" % "test",
+      "org.scalatest" % "scalatest_2.11" % "2.2.2" % "test"
     )
   )
 
