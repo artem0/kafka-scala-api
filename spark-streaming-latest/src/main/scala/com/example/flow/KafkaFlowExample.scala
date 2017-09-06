@@ -1,7 +1,7 @@
-package com.example
+package com.example.flow
 
-import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 import org.apache.spark.streaming.dstream.DStream._
+import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 import org.joda.time.DateTime
 import org.json4s.DefaultFormats
 import org.json4s.jackson.JsonMethods._

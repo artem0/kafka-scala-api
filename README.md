@@ -6,6 +6,7 @@
 5. Spark structured streaming and Kafka integration
 6. Spark writer to Kafka from Dstream, RDD and DataFrame via <https://github.com/BenFradet/spark-kafka-writer>
 read data from socket - `nc -lk 9087` transform and write to Kafka
+7. Template for seamless converting from/to Avro for Kafka - spark-streaming-latest/../com.example.avro
 
 ## Installation
 Install Kafka in docker

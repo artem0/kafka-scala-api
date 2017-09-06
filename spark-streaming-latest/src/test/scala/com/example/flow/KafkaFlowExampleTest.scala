@@ -1,6 +1,5 @@
 package com.example.flow
 
-import com.example.KafkaFlowExample
 import org.apache.log4j.{Level, Logger}
 import org.specs2.mutable._
 
